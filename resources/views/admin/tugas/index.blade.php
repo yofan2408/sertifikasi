@@ -49,6 +49,8 @@
                                     <th>Kategori</th>
                                     <th>Keterangan</th>
                                     <th>Status</th>
+                                    <th>Edit</th>
+                                    <th>Hapus</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,6 +61,8 @@
                                         <td>{{ $row->id_kategori }}</td>
                                         <td>{{ $row->ket_tugas }}</td>
                                         <td>{{ $row->status_tugas }}</td>
+                                        <td><a href="{{ route('tugas.edit', $row->id) }}" class="btn btn-primary">Edit</a></td>
+                                        <td><a href="#" class="btn btn-danger">Hapus</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

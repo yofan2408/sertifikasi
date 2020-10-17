@@ -79,7 +79,10 @@ class TugasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data_kategori = Kategori::all();
+        $pageName = 'Update Tugas';
+        $data = Task::find($id);
+        return view('admin.tugas.edit', compact('data', 'pageName', 'data_kategori'));
     }
 
     /**
