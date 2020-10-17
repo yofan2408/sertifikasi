@@ -121,6 +121,9 @@ class TugasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tugas = Task::find($id);
+
+        $tugas->delete();
+        return redirect('admin/tugas')->with('sukses', 'tugas berhasil dihapus');
     }
 }

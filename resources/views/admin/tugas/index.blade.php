@@ -62,7 +62,13 @@
                                         <td>{{ $row->ket_tugas }}</td>
                                         <td>{{ $row->status_tugas }}</td>
                                         <td><a href="{{ route('tugas.edit', $row->id) }}" class="btn btn-primary">Edit</a></td>
-                                        <td><a href="#" class="btn btn-danger">Hapus</a></td>
+                                        <td>
+                                            <form action="{{ route('tugas.destroy', $row->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">Hapus</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
