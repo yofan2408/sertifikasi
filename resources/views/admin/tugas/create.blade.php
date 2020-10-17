@@ -38,17 +38,26 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                                <div class="card-header">
-                                    <strong>{{ $pagename }}</strong>
-                                </div>
-                                <div class="card-body card-block">
-                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="card-header">
+                        <strong>{{ $pagename }}</strong>
+                    </div>
+                        <div class="card-body card-block">
+                            <form action="{{ route('tugas.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        @csrf
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama Tugas</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtnama_tugas" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="text-input" name="txtnama_tugas" placeholder="Masukan Nama Tugas" class="form-control">
+                                        @error('txtnama_tugas')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
                                 </div>
+
                                 <div class="row form-group">
-                                    <div class="col col-md-3"><label for="select" class=" form-control-label">Kategori Tugas</label></div>
+                                    <div class="col col-md-3">
+                                        <label for="select" class=" form-control-label">Kategori Tugas</label>
+                                    </div>
                                     <div class="col-12 col-md-9">
                                         <select name="optionid_kategori" id="select" class="form-control">
                                             @foreach ($data_kategori as $kategori)
@@ -57,26 +66,42 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Keterangan Tugas</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtketerangan_tugas" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="text-input" name="txtketerangan_tugas" placeholder="Masukan Keterangan Tugas" class="form-control">
+                                        @error('txtketerangan_tugas')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
                                 </div>
+
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label class=" form-control-label">Status Tugas</label></div>
                                     <div class="col col-md-9">
                                         <div class="form-check-inline form-check">
                                             <label for="inline-radio1" class="form-check-label ">
-                                                <input type="radio" id="inline-radio1" name="radiostatus_tugas" value="option1" class="form-check-input">Masih Berjalan
+                                                <input type="radio" id="inline-radio1" name="radiostatus_tugas" value=0 class="form-check-input">Masih Berjalan
+                                                <div class="col col-md-6"></div>
                                             </label>
                                             <label for="inline-radio2" class="form-check-label ">
-                                                <input type="radio" id="inline-radio2" name="radiostatus_tugas" value="option2" class="form-check-input">Selesai
+                                                <input type="radio" id="inline-radio2" name="radiostatus_tugas" value=1 class="form-check-input">Selesai
                                             </label>
                                         </div>
                                     </div>
+                                    <div class="col col-md-3"><label class=" form-control-label"></label></div>
+                                    <div class="col col-md-19">
+                                        @error('radiostatus_tugas')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                    
                                 </div>
+
                                 <div>
                                     <button type="submit" class="btn btn-primary btn-sm">
-                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                        <i class="fa fa-dot-circle-o"></i> Simpan
                                     </button>
                                     <button type="reset" class="btn btn-danger btn-sm">
                                         <i class="fa fa-ban"></i> Reset
