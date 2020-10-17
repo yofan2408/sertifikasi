@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Kategori;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,9 @@ class TugasController extends Controller
      */
     public function create()
     {
-        return view('admin.tugas.create');
+        $data_kategori = Kategori::all();
+        $pagename = 'Form Input Tugas';
+        return view('admin.tugas.create', compact('pagename', 'data_kategori'));
     }
 
     /**
