@@ -42,7 +42,8 @@
                         <strong>{{ $pageName }}</strong>
                     </div>
                         <div class="card-body card-block">
-                            <form action="{{ route('tugas.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <form action="{{ route('tugas.update', $data->id) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        @method('PATCH')
                                         @csrf
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama Tugas</label></div>
@@ -107,7 +108,7 @@
 
                                 <div>
                                     <button type="submit" class="btn btn-primary btn-sm">
-                                        <i class="fa fa-dot-circle-o"></i> Simpan
+                                        <i class="fa fa-dot-circle-o"></i> Update
                                     </button>
                                     <button type="reset" class="btn btn-danger btn-sm">
                                         <i class="fa fa-ban"></i> Reset
