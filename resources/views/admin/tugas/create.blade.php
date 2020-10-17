@@ -90,13 +90,12 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col col-md-3"><label class=" form-control-label"></label></div>
-                                    <div class="col col-md-19">
+                                    <div class="col col-md-3"></div>
+                                    <div class="col col-md-9">
                                         @error('radiostatus_tugas')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>
-                                    
                                 </div>
 
                                 <div>
