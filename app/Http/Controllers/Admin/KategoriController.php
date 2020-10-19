@@ -27,7 +27,8 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        $pagename = 'Form Input Kategori';
+        return view('admin.kategori.create', compact('pagename'));
     }
 
     /**
@@ -38,7 +39,19 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          // dd($request);
+          $request->validate([
+            'txtnama_kategori' => 'required',
+            'radiostatus_kategori' => 'required'
+        ]);
+
+        $data_kategori = new Kategori([
+            'nama_kategori' => $request->get('txtnama_kategori'),
+            'status_kategori' => $request->get('radiostatus_kategori')
+        ]);
+
+        $data_kategori->save();
+        return redirect('admin/kategori')->with('sukses', 'kategori berhasil disimpan');
     }
 
     /**
@@ -60,7 +73,10 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data_kategori = Kategori::all();
+        $pageName = 'Update Kategori';
+        $data = Kategori::find($id);
+        return view('admin.kategori.edit', compact('data', 'pageName', 'data_kategori'));
     }
 
     /**
@@ -72,7 +88,17 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'txtnama_kategori' => 'required',
+            'radiostatus_kategori' => 'required'
+        ]);
+
+        $kategori = Kategori::find($id);
+        $kategori->nama_kategori = $request->get('txtnama_kategori');
+        $kategori->status_kategori = $request->get('radiostatus_kategori');
+
+        $kategori->save();
+        return redirect('admin/kategori')->with('sukses', 'kategori berhasil diupdate');
     }
 
     /**
@@ -83,6 +109,9 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kategori = Kategori::find($id);
+
+        $kategori->delete();
+        return redirect('admin/kategori')->with('sukses', 'kategori berhasil dihapus');
     }
 }

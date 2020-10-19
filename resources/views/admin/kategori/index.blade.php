@@ -29,8 +29,16 @@
 
             <div class="col-md-12">
                 <div class="card">
+
+                    @if (session()->get('sukses'))
+                        <div class="alert alert-success">
+                            {{ session()->get('sukses') }}
+                        </div>
+                    @endif
+
                     <div class="card-header">
                         <strong class="card-title">{{ $pageName }}</strong>
+                        <a href="{{ route('kategori.create') }}" class="btn btn-primary pull-right">Tambah</a>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -39,6 +47,8 @@
                                     <th>#</th>
                                     <th>Nama</th>
                                     <th>Status</th>
+                                    <th>Edit</th>
+                                    <th>Hapus</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,6 +57,14 @@
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $row->nama_kategori }}</td>
                                         <td>{{ $row->status_kategori }}</td>
+                                        <td><a href="{{ route('kategori.edit', $row->id) }}" class="btn btn-primary">Edit</a></td>
+                                        <td>
+                                            <form action="{{ route('kategori.destroy', $row->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">Hapus</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
